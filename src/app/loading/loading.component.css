@@ -1,0 +1,120 @@
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.portal-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.portal {
+    width: 100%;
+    height: 100%;
+    animation: portal-spin 4s linear infinite;
+}
+
+.portal-outer {
+    fill: none;
+    stroke: #97ce4c;
+    stroke-width: 2;
+    animation: portal-pulse 2s infinite;
+}
+
+.portal-middle {
+    fill: rgba(151, 206, 76, 0.2);
+    stroke: #97ce4c;
+    stroke-width: 1.5;
+    animation: portal-spin-reverse 3s linear infinite;
+}
+
+.portal-inner {
+    fill: rgba(151, 206, 76, 0.1);
+    stroke: #97ce4c;
+    stroke-width: 1;
+    animation: portal-pulse 2s infinite alternate;
+}
+
+.portal-core {
+    fill: rgba(151, 206, 76, 0.3);
+    animation: core-pulse 1.5s infinite alternate;
+}
+
+.loading-text {
+    position: absolute;
+    bottom: -40px;
+    color: #97ce4c;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(151, 206, 76, 0.5);
+}
+
+.loading-text span {
+    display: inline-block;
+    animation: text-bounce 1.5s infinite;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes portal-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes portal-spin-reverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+}
+
+@keyframes portal-pulse {
+    0% { 
+        stroke-width: 2;
+        stroke: #97ce4c;
+    }
+    50% { 
+        stroke-width: 3;
+        stroke: #31f00b;
+    }
+    100% { 
+        stroke-width: 2;
+        stroke: #97ce4c;
+    }
+}
+
+@keyframes core-pulse {
+    from { 
+        transform: scale(0.9);
+        fill: rgba(151, 206, 76, 0.3);
+    }
+    to { 
+        transform: scale(1.1);
+        fill: rgba(151, 206, 76, 0.5);
+    }
+}
+
+@keyframes text-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+        color: #31f00b;
+        text-shadow: 0 0 15px rgba(49, 240, 11, 0.8);
+    }
+}
+
+/* Añade en el componente TypeScript */
+.loading-text span {
+    --i: 0;  /* Se establecerá dinámicamente */
+}
